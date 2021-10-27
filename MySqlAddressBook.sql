@@ -1,5 +1,4 @@
-create database AddressBookManagement;
-drop database AddressBookManagement;
+
 --- uc1 CREATE DATABASE	
 
 create database AddressBookService;
@@ -39,4 +38,40 @@ SHOW DATABASE AddressBookService;
   select Count(City) from AddressBook where FName='Lalitha' GROUP BY FName ; --- 1
   select Count(State) from AddressBook where FName = 'Lalitha' GROUP BY FName ; --1
 
-   
+  -- create some more contacts to the addressbook
+
+  insert into AddressBook values('Mounika','Addagatla','123','Srcl','Tg',505301,'123','mouna@gamil.com'),
+  ('Rakesh','Addagatla','asd','Srcl','Tg',505301,'321','raki@gamil.com'),
+  ('Aparna','Addagatla','adaf','Srcl','Tg',505301,'654','aparna@gamil.com'),
+  ('Mounika3','Addagatla','adfa','Srcl','Tg',505301,'987','mona3@gamil.com'),
+  ('Swarna','Addagatla','adaf','Srcl','Tg',505301,'789','swarna@gamil.com');
+
+  select * from AddressBook;
+
+  ---- UC8 Sort by ascending order 
+  select * from AddressBook where City='Srcl' order by FName asc; --a-->z
+  -- descending order use desc
+  select * from AddressBook where City='Srcl' order by FName desc;
+    
+---- UC9 
+
+-- Add addressbook name and type columns
+alter table AddressBook add addressbook_name varchar(20), type varchar(20)
+
+update AddressBook set addressbook_name ='Home' ,type ='Family' where FName='Mounika' or FName='Lalitha'
+update AddressBook set addressbook_name='college',type='Friends' where FName='Mounika3' or FName='Rakesh'
+
+select * from AddressBook
+
+update AddressBook set addressbook_name='Office',type ='Collegue' where FName='Aparna' or FName='Swarna'
+
+select * from AddressBook
+
+----uc10 
+select type, COUNT(Fname) from AddressBook group by type
+
+---UC11
+ Insert into AddressBook values
+('Monaa','Adagatla','jp nagar','Srcl', 'Tg','256645','12346','mona@gmail.com','Home','Family')
+
+select * from AddressBook
